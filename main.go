@@ -1,23 +1,21 @@
 package main
 
-import "fmt"
+import "log"
 
 func main() {
-	fmt.Println("Hello, world.")
+	var myString string
+	myString = "Green"
 
-	var whatToSay string
-	var i int // int will default to bit of computer
+	log.Println("myString is set to", myString)
+	changeUsingPointer(&myString) // pointer points to a specific address in memory
+	log.Println("After func call myString is set to", myString)
 
-	whatToSay = "Goodbye, cruel world."
-	fmt.Println(whatToSay)
-
-	i = 7
-	fmt.Println("i is set to", i)
-
-	whatWasSaid, theOtherThingThatWasSaid := saySomething() // set whatWasSaid to the type returned by saySomething()
-	fmt.Println("The function returned", whatWasSaid, theOtherThingThatWasSaid)
+	var a = 45
+	var s *int = &a
+	log.Println(s)
 }
 
-func saySomething() (string, string) { // must return a string
-	return "something", "else"
+func changeUsingPointer(s *string) { // type pointer to a string
+	newValue := "Red"
+	*s = newValue // find the memory address and modify its value
 }
